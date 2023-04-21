@@ -137,6 +137,31 @@ router.get("/yearsRange/:fromYear([0-9]+)-:toYear([0-9]+)", (req, res) => {
    return res.send(response);
 })
 
+router.get("/distributedIn/:country", (req, res) => {
+  const countryName = req.params.country;
+
+  let booksList = [];
+
+  data.dataLibrary.books.forEach(book => {
+    const country = book.distributedCountries.find(country => country === countryName)
+    
+    if (country !== undefined) {
+      booksList.push(book.title);
+    }
+  })
+
+  const response = {
+    service: "books",
+    architecture: "microservices",
+    length: booksList.length,
+    data: {
+      books: booksList,
+    },
+  }
+
+  return res.send(response);
+})
+
 module.exports = router; // exporta el enrutador de Express para su uso en otras partes de la aplicación
 
 /*

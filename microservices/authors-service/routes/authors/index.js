@@ -59,6 +59,29 @@ router.get("/author/:name", (req, res) => {
   return res.send(response);
 });
 
+router.get("/country/:country", (req, res) => {
+  const country = req.params.country;
+
+  let authorsList = [];
+  
+  data.dataLibrary.authors.forEach(author => {
+    if (author.country === country) {
+      authorsList.push(author.author);
+    }
+  });
+
+  const response = {
+    service: "authors",
+    architecture: "microservices",
+    length: authorsList.length,
+    data: {
+      authors: authorsList,
+    },
+  };
+
+  return res.send(response);
+});
+
 // Exportamos el objeto Router
 module.exports = router;
 
