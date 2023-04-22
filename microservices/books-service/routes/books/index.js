@@ -143,9 +143,9 @@ router.get("/distributedIn/:country", (req, res) => {
   let booksList = [];
 
   data.dataLibrary.books.forEach(book => {
-    const country = book.distributedCountries.find(country => country === countryName)
+    const country = book.distributedCountries.some(country => country === countryName)
     
-    if (country !== undefined) {
+    if (country) {
       booksList.push(book.title);
     }
   })

@@ -13,6 +13,9 @@ services:
   countries:
     build: ./microservices/countries-service
 
+  lenguages:
+    build: ./microservices/lenguages-service
+
   nginx:
     image: nginx:latest
     ports:
@@ -24,3 +27,4 @@ services:
       - authors
       - books
       - countries
+      - lenguages
