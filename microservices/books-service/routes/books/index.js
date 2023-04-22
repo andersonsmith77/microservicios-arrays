@@ -120,8 +120,8 @@ router.get("/:searchType(ofYear|sinceYear|untilYear)/:year([0-9]+)", (req, res) 
 })
 
 router.get("/yearsRange/:fromYear([0-9]+)-:toYear([0-9]+)", (req, res) => {
-  const firstYear = parseInt(req.params.from);
-  const lastYear = parseInt(req.params.to);
+  const firstYear = parseInt(req.params.fromYear);
+  const lastYear = parseInt(req.params.toYear);
 
   const bookList = data.dataLibrary.books.filter((book) => {
     return book.year >= firstYear && book.year <= lastYear; 
